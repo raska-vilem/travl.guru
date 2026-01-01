@@ -1,10 +1,11 @@
 ---
 import '@/styles/global.css';
+import { Font } from 'astro:assets';
 
 const { title, description } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" data-theme="prague-dark">
 	<head>
 		<meta charset="utf-8">
         <title>{ title }</title>
@@ -18,8 +19,10 @@ const { title, description } = Astro.props;
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="Travl guru" />
         <link rel="manifest" href="/site.webmanifest" />
+
+        <Font cssVariable="--font-roboto" preload />
 	</head>
-	<body>
+	<body class="p-2">
 		<slot />
 	</body>
 </html>
