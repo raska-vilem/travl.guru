@@ -1,19 +1,24 @@
 {
-  "name": "teal-trappist",
+  "name": "travl-guru",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "pnpm generate-types && astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate-types": "source .env && directus-typeforge -h $CMS_URL -e $CMS_EMAIL -p $CMS_PASSWORD -o ./generated/directus.ts",
+    "lint": "biome lint --write .",
+    "lint:fix": "biome check --write ."
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "@biomejs/biome": "2.3.10",
+    "@directus/sdk": "^20.3.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.6",
+    "daisyui": "^5.5.14",
+    "directus-typeforge": "^0.17.0",
     "tailwindcss": "^4.1.18"
-  },
-  "devDependencies": {
-    "daisyui": "^5.5.14"
   }
 }
