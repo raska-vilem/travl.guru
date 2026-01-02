@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-01T20:42:56.918Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-02T12:59:44.087Z */
 export interface Global {
   id: number;
   title: string;

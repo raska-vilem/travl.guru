@@ -2,6 +2,7 @@
   "name": "travl-guru",
   "type": "module",
   "version": "0.0.1",
+  "packageManager": "pnpm@10.15.0",
   "scripts": {
     "dev": "pnpm generate-types && astro dev",
     "build": "astro build",
@@ -17,8 +18,10 @@
     "@directus/sdk": "^20.3.0",
     "@tailwindcss/vite": "^4.1.18",
     "astro": "^5.16.6",
+    "astro-icon": "^1.1.5",
     "daisyui": "^5.5.14",
     "directus-typeforge": "^0.17.0",
-    "tailwindcss": "^4.1.18"
+    "tailwindcss": "^4.1.18",
+    "typescript": "^5.9.3"
   }
 }

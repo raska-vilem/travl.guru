@@ -2,6 +2,11 @@
 import '@/styles/global.css';
 import { Font } from 'astro:assets';
 
+interface Props {
+    title: string;
+    description: string;
+}
+
 const { title, description } = Astro.props;
 ---
 
@@ -10,6 +15,7 @@ const { title, description } = Astro.props;
 		<meta charset="utf-8">
         <title>{ title }</title>
         <base href="/">
+        <meta name="title" content={ title } />
         <meta name="description" content={ description } />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -17,12 +23,12 @@ const { title, description } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-title" content="Travl guru" />
+        <meta name="apple-mobile-web-app-title" content={title} />
         <link rel="manifest" href="/site.webmanifest" />
 
         <Font cssVariable="--font-roboto" preload />
 	</head>
-	<body class="p-2">
+	<body>
 		<slot />
 	</body>
 </html>

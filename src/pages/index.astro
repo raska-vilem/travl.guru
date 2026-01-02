@@ -2,10 +2,10 @@
 
 import { readSingleton } from '@directus/sdk';
 import DefaultLayout from '@/layouts/default.astro';
-import { directusClient } from '@/lib/directus';
+import { directusRequest } from '@/lib/directus';
 import Navbar from '@/organisms/navbar.astro';
 
-const global = await directusClient.request(readSingleton('global'));
+const global = await directusRequest(readSingleton('global'));
 ---
 
 <DefaultLayout title={global.title} description={global.description}>

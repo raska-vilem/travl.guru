@@ -2,9 +2,10 @@ import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField, fontProviders } from 'astro/config';
 
 import sitemap from '@astrojs/sitemap';
+import icon from 'astro-icon';
 
 export default defineConfig({
-  site: 'https://prague.travl.guru',
+  site: 'https://travl.guru',
   env: {
     schema: {
       CMS_URL: envField.string({ context: 'server', optional: false, access: 'public' }),
@@ -13,7 +14,10 @@ export default defineConfig({
   vite: {
       plugins: [tailwindcss()]
   },
-  integrations: [sitemap()],
+  integrations: [sitemap(), icon()],
+  prefetch: {
+    defaultStrategy: 'viewport'
+  },
   experimental: {
     fonts: [
       {
