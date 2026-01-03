@@ -1,8 +1,13 @@
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField, fontProviders } from 'astro/config';
 
+// @ts-ignore
+import getRemoteAssets from 'astro-get-remote-img';
 import sitemap from '@astrojs/sitemap';
 import icon from 'astro-icon';
+import { loadEnv } from "vite";
+
+const { CMS_URL } = loadEnv('production', process.cwd(), "");
 
 export default defineConfig({
   site: 'https://travl.guru',
@@ -14,7 +19,14 @@ export default defineConfig({
   vite: {
       plugins: [tailwindcss()]
   },
-  integrations: [sitemap(), icon()],
+  integrations: [
+    sitemap(),
+    icon(),
+    getRemoteAssets({
+      url: `${CMS_URL}/assets`,
+      imageDir: './static',
+    }),
+  ],
   prefetch: {
     defaultStrategy: 'viewport'
   },

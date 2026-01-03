@@ -1,34 +1,43 @@
 ---
 import '@/styles/global.css';
 import { Font } from 'astro:assets';
+import { buildAssetUrl } from '@/utils/build-asset-url';
+import { parseSeo } from '@/utils/parse-seo';
 
 interface Props {
-    title: string;
-    description: string;
+    seo: Record<string, unknown>;
 }
 
-const { title, description } = Astro.props;
+const { seo } = Astro.props;
+const { title, meta_description, og_image } = parseSeo(seo);
+
+const imgUrl = buildAssetUrl(og_image || '', { width: '400' });
 ---
 
 <html lang="en" data-theme="prague-dark">
 	<head>
 		<meta charset="utf-8">
-        <title>{ title }</title>
+        <title>{ seo.title }</title>
         <base href="/">
         <meta name="title" content={ title } />
-        <meta name="description" content={ description } />
+        <meta name="description" content={ meta_description } />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <meta name="apple-mobile-web-app-title" content={title} />
+        <meta name="apple-mobile-web-app-title" content={ title } />
         <link rel="manifest" href="/site.webmanifest" />
+
+        <meta property="og:title" content={ title } />
+        <meta property="og:description" content={ meta_description } />
+        <meta property="og:image" content={ imgUrl } />
 
         <Font cssVariable="--font-roboto" preload />
 	</head>
 	<body>
+	    <img src={ imgUrl } alt={ title } />
 		<slot />
 	</body>
 </html>

@@ -8,6 +8,6 @@ import Navbar from '@/organisms/navbar.astro';
 const global = await directusRequest(readSingleton('global'));
 ---
 
-<DefaultLayout title={global.title} description={global.description}>
+<DefaultLayout seo={global.seo}>
     <Navbar/>
 </DefaultLayout>
