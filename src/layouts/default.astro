@@ -8,7 +8,7 @@ interface Props {
 }
 
 const { seo } = Astro.props;
-const { title, meta_description, og_image } = parseSeo(seo);
+const { title, meta_description } = parseSeo(seo);
 ---
 
 <html lang="en" data-theme="prague-dark">
@@ -31,6 +31,8 @@ const { title, meta_description, og_image } = parseSeo(seo);
         <meta property="og:description" content={ meta_description } />
 
         <Font cssVariable="--font-roboto" preload />
+
+        <slot name="head" />
 	</head>
 	<body>
 		<slot />
