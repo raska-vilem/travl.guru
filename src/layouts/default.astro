@@ -1,14 +1,30 @@
 ---
 import '@/styles/global.css';
 import { Font } from 'astro:assets';
+import { readSingleton } from '@directus/sdk';
+import { directusRequest } from '@/lib/directus';
 import { parseSeo } from '@/utils/parse-seo';
 
 interface Props {
-    seo: Record<string, unknown>;
+    title?: string;
+    description?: string;
 }
 
-const { seo } = Astro.props;
-const { title, meta_description } = parseSeo(seo);
+const global = await directusRequest(readSingleton('global'));
+
+const props = Astro.props;
+const seo = parseSeo(global.seo);
+
+let title = seo.title;
+let description = seo.meta_description;
+
+if (props.title) {
+    title = `${props.title} | ${title}`;
+}
+
+if (props.description) {
+    description = props.description;
+}
 ---
 
 <html lang="en" data-theme="prague-dark">
@@ -17,7 +33,7 @@ const { title, meta_description } = parseSeo(seo);
         <title>{ seo.title }</title>
         <base href="/">
         <meta name="title" content={ title } />
-        <meta name="description" content={ meta_description } />
+        <meta name="description" content={ description } />
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
@@ -28,13 +44,13 @@ const { title, meta_description } = parseSeo(seo);
         <link rel="manifest" href="/site.webmanifest" />
 
         <meta property="og:title" content={ title } />
-        <meta property="og:description" content={ meta_description } />
+        <meta property="og:description" content={ description } />
 
         <Font cssVariable="--font-roboto" preload />
 
         <slot name="head" />
 	</head>
-	<body>
+	<body class="relative">
 		<slot />
 	</body>
 </html>

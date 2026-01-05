@@ -38,5 +38,8 @@ export default defineConfig({
         name: 'Roboto'
       }
     ]
+  },
+  image: {
+    domains: [CMS_URL]
   }
 });

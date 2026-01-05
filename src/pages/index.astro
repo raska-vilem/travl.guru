@@ -1,13 +1,15 @@
 ---
-
 import { readSingleton } from '@directus/sdk';
 import DefaultLayout from '@/layouts/default.astro';
 import { directusRequest } from '@/lib/directus';
-import Navbar from '@/organisms/navbar.astro';
+import ThemeToggle from '@/molecules/theme-toggle.astro';
+import WelcomeHero from '@/organisms/welcome-hero.astro';
 
-const global = await directusRequest(readSingleton('global'));
+const welcome = await directusRequest(readSingleton('welcome'));
 ---
 
-<DefaultLayout seo={global.seo}>
-    <Navbar/>
+<DefaultLayout title={ welcome.title }>
+    <ThemeToggle class="absolute top-3 right-3 z-10" />
+
+    <WelcomeHero />
 </DefaultLayout>

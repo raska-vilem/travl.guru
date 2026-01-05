@@ -1,7 +1,46 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-05T08:16:40.585Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-05T13:39:11.888Z */
 export interface Global {
   id: number;
   seo: Record<string, unknown>;
+}
+
+export interface Welcome {
+  id: number;
+  /** Title of the main landing page */
+  title: string;
+  /** Subtitle on landing page */
+  subtitle: string;
+  /** image related to the city. Flag or some photo. */
+  hero_background: string | DirectusFile;
+}
+
+export interface DirectusFile {
+  id: string;
+  storage: string;
+  filename_disk: string;
+  filename_download: string;
+  title: string;
+  type: string;
+  folder: string | DirectusFolder;
+  uploaded_by: string | DirectusUser;
+  uploaded_on: string;
+  modified_by: string | DirectusUser;
+  modified_on: string;
+  charset: string;
+  filesize: number;
+  width: number;
+  height: number;
+  duration: number;
+  embed: string;
+  description: string;
+  location: string;
+  tags: string;
+  metadata: string;
+  created_on: string;
+  focal_point_x: string;
+  focal_point_y: string;
+  tus_id: string;
+  tus_data: string;
 }
 
 export interface DirectusUser {
@@ -34,35 +73,6 @@ export interface DirectusUser {
   policies: string;
 }
 
-export interface DirectusFile {
-  id: string;
-  storage: string;
-  filename_disk: string;
-  filename_download: string;
-  title: string;
-  type: string;
-  folder: string | DirectusFolder;
-  uploaded_by: string | DirectusUser;
-  uploaded_on: string;
-  modified_by: string | DirectusUser;
-  modified_on: string;
-  charset: string;
-  filesize: number;
-  width: number;
-  height: number;
-  duration: number;
-  embed: string;
-  description: string;
-  location: string;
-  tags: string;
-  metadata: string;
-  created_on: string;
-  focal_point_x: string;
-  focal_point_y: string;
-  tus_id: string;
-  tus_data: string;
-}
-
 export interface DirectusFolder {
   id: string;
   name: string;
@@ -84,5 +94,7 @@ export interface DirectusRole {
 
 export interface ApiCollections {
   global: Global;
+  welcome: Welcome;
+  directus_files: DirectusFile[];
 }
 
