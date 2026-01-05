@@ -1,7 +1,6 @@
 ---
 import '@/styles/global.css';
 import { Font } from 'astro:assets';
-import { buildAssetUrl } from '@/utils/build-asset-url';
 import { parseSeo } from '@/utils/parse-seo';
 
 interface Props {
@@ -10,8 +9,6 @@ interface Props {
 
 const { seo } = Astro.props;
 const { title, meta_description, og_image } = parseSeo(seo);
-
-const imgUrl = buildAssetUrl(og_image || '', { width: '400' });
 ---
 
 <html lang="en" data-theme="prague-dark">
@@ -32,12 +29,10 @@ const imgUrl = buildAssetUrl(og_image || '', { width: '400' });
 
         <meta property="og:title" content={ title } />
         <meta property="og:description" content={ meta_description } />
-        <meta property="og:image" content={ imgUrl } />
 
         <Font cssVariable="--font-roboto" preload />
 	</head>
 	<body>
-	    <img src={ imgUrl } alt={ title } />
 		<slot />
 	</body>
 </html>
