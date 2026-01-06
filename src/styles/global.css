@@ -74,3 +74,11 @@
 body {
     font-family: var(--font-roboto);
 }
+
+.theme-respecting-image {
+    @apply brightness-70;
+}
+
+:root:has(input.theme-controller[value="light"]:checked) .theme-respecting-image {
+    @apply brightness-100;
+}

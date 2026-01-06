@@ -5,32 +5,18 @@ import { directusRequest } from '@/lib/directus';
 import { buildAssetUrl } from '@/utils/build-asset-url';
 
 const { title, subtitle, hero_background } = await directusRequest(readSingleton('welcome'));
-const bgImage = buildAssetUrl(hero_background);
-
-const background = `url(${bgImage})`;
+const heroImage = buildAssetUrl(hero_background);
 ---
 
-<style define:vars={{ background }}>
-header {
-    @apply h-screen relative bg-cover bg-center;
-    background-image: var(--background);
+<header class="hero bg-base-200 min-h-screen">
+    <div class="hero-content flex-col lg:flex-row">
+        <Image src={heroImage} width="384" height="216" alt="Hero image" class="rounded-lg shadow-2xl theme-respecting-image" />
 
-    &::before {
-        @apply backdrop-brightness-25 absolute w-full h-full;
-        content: '';
-    }
-}
-
-:root:has(input.theme-controller[value=light]:checked) header {
-    &::before {
-        @apply backdrop-brightness-100;
-    }
-}
-</style>
-
-<header class="w-full grid justify-center content-center">
-    <div class="p-2 z-10 w-3xl flex flex-col gap-4">
-        <h1 class="text-5xl">{ title }</h1>
-        <h3>{ subtitle }</h3>
+        <div>
+            <h1 class="text-5xl font-bold">{ title }</h1>
+            <p class="py-6">
+                { subtitle }
+            </p>
+        </div>
     </div>
 </header>
