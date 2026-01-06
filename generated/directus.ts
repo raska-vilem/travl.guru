@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-06T08:30:46.225Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-06T11:59:01.649Z */
 export interface Global {
   id: number;
   seo: Record<string, unknown>;
