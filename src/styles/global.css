@@ -2,7 +2,7 @@
 @plugin "daisyui";
 
 @plugin "daisyui/theme" {
-    name: "prague-light";
+    name: "light";
     default: true;
     prefersdark: false;
     color-scheme: "light";
@@ -37,7 +37,7 @@
 }
 
 @plugin "daisyui/theme" {
-    name: "prague-dark";
+    name: "dark";
     default: false;
     prefersdark: true;
     color-scheme: "dark";

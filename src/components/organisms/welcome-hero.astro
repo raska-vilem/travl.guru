@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { readSingleton } from '@directus/sdk';
 import { directusRequest } from '@/lib/directus';
 import { buildAssetUrl } from '@/utils/build-asset-url';
@@ -11,20 +12,18 @@ const background = `url(${bgImage})`;
 
 <style define:vars={{ background }}>
 header {
+    @apply h-screen relative bg-cover bg-center;
     background-image: var(--background);
-    background-size: cover;
-    background-position: center;
-    position: relative;
-    height: 100vh;
 
     &::before {
+        @apply backdrop-brightness-25 absolute w-full h-full;
         content: '';
-        backdrop-filter: brightness(0.5);
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+    }
+}
+
+:root:has(input.theme-controller[value=light]:checked) header {
+    &::before {
+        @apply backdrop-brightness-100;
     }
 }
 </style>
