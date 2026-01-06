@@ -20,12 +20,14 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
-      - name: Test env
-        run: echo ${{ vars.CMS_URL }}
       - name: Install, build, and upload your site
         uses: withastro/action@v3
         with:
           node-version: 25.1.0
+        env:
+          CMS_URL: ${{ vars.CMS_URL }}
+          CMS_EMAIL: ${{ secrets.CMS_EMAIL }}
+          CMS_PASSWORD: ${{ secrets.CMS_PASSWORD }}
 
   deploy:
     needs: build
