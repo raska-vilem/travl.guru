@@ -8,7 +8,7 @@ const { title, subtitle, hero_image } = await directusRequest(readSingleton('wel
 const heroImageUrl = buildAssetUrl(hero_image);
 ---
 
-<header class="hero bg-base-200 min-h-screen">
+<header class="hero section">
     <div class="hero-content flex-col lg:flex-row">
         <Image
             src={heroImageUrl}

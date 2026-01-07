@@ -82,3 +82,9 @@ body {
 :root:has(input.theme-controller[value="light"]:checked) .dimmed-image {
     @apply brightness-100;
 }
+
+@layer components {
+    .section {
+        @apply lg:py-20 py-10 bg-base-200;
+    }
+}
