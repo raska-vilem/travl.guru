@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-06T18:42:36.571Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-07T10:41:49.279Z */
 export interface Global {
   id: number;
   seo: Record<string, unknown>;
@@ -10,8 +10,7 @@ export interface Welcome {
   title: string;
   /** Subtitle on landing page */
   subtitle: string;
-  /** image related to the city. Flag or some photo. */
-  hero_background: string | DirectusFile;
+  hero_image: string | DirectusFile;
 }
 
 export interface DirectusFile {
