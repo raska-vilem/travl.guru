@@ -3,8 +3,8 @@ import '@/styles/global.css';
 import { Font } from 'astro:assets';
 import { readSingleton } from '@directus/sdk';
 import { directusRequest } from '@/lib/directus';
-import { parseSeo } from '@/utils/parse-seo';
 import { buildAssetUrl } from '@/utils/build-asset-url';
+import { parseSeo } from '@/utils/parse-seo';
 
 interface Props {
     title?: string;
@@ -18,7 +18,7 @@ const seo = parseSeo(global.seo);
 
 let title = seo.title;
 let description = seo.meta_description;
-let ogImageUrl: string | undefined = undefined;
+let ogImageUrl: string | undefined;
 
 if (props.title) {
     title = `${props.title} | ${title}`;
@@ -29,9 +29,8 @@ if (props.description) {
 }
 
 if (seo.og_image) {
-  ogImageUrl = buildAssetUrl(seo.og_image);
+    ogImageUrl = buildAssetUrl(seo.og_image);
 }
-
 ---
 
 <html lang="en" data-theme="dark">
