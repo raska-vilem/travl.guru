@@ -10,7 +10,8 @@
     "astro": "astro",
     "generate-types": "source .env && directus-typeforge -h $CMS_URL -e $CMS_EMAIL -p $CMS_PASSWORD -o ./generated/directus.ts",
     "lint": "biome lint --write .",
-    "lint:fix": "biome check --write ."
+    "lint:fix": "biome check --write .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
@@ -21,6 +22,7 @@
     "astro-icon": "^1.1.5",
     "daisyui": "^5.5.14",
     "directus-typeforge": "^0.17.0",
+    "husky": "^9.1.7",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "vite": "^7.3.0"

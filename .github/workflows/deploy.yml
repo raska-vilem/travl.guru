@@ -1,43 +1,43 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches: [ main ]
-  workflow_dispatch:
-  repository_dispatch:
+    push:
+        branches: [main]
+    workflow_dispatch:
+    repository_dispatch:
 
 concurrency:
-  group: ${{ github.event.inputs.environment || 'default' }}
-  cancel-in-progress: true
+    group: ${{ github.event.inputs.environment || 'default' }}
+    cancel-in-progress: true
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+    contents: read
+    pages: write
+    id-token: write
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
-      - name: Install, build, and upload your site
-        uses: withastro/action@v3
-        with:
-          node-version: 25.1.0
-        env:
-          CDN_URL: ${{ vars.CDN_URL }}
-          CMS_URL: ${{ vars.CMS_URL }}
-          CMS_EMAIL: ${{ secrets.CMS_EMAIL }}
-          CMS_PASSWORD: ${{ secrets.CMS_PASSWORD }}
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout your repository using git
+              uses: actions/checkout@v4
+            - name: Install, build, and upload your site
+              uses: withastro/action@v3
+              with:
+                  node-version: 25.1.0
+              env:
+                  CDN_URL: ${{ vars.CDN_URL }}
+                  CMS_URL: ${{ vars.CMS_URL }}
+                  CMS_EMAIL: ${{ secrets.CMS_EMAIL }}
+                  CMS_PASSWORD: ${{ secrets.CMS_PASSWORD }}
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
