@@ -6,15 +6,16 @@ import { buildAssetUrl } from '@/utils/build-asset-url';
 
 const { title, subtitle, hero_image } = await directusRequest(readSingleton('welcome'));
 const heroImageUrl = buildAssetUrl(hero_image);
+const heroImageAlt = `Into image | ${title}`;
 ---
 
-<header class="hero section">
+<header class="section">
     <div class="hero-content flex-col lg:flex-row">
         <Image
-            src={heroImageUrl}
+            src={ heroImageUrl }
             width="576"
             height="324"
-            alt="Hero image"
+            alt={ heroImageAlt }
             class="rounded-lg shadow-2xl dimmed-image"
         />
 
