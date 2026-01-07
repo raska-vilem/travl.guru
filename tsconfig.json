@@ -7,9 +7,9 @@
             "@/molecules/*": ["./src/components/molecules/*"],
             "@/organisms/*": ["./src/components/organisms/*"],
             "@/templates/*": ["./src/components/templates/*"],
-            "@/*": ["./src/*"],
-        },
+            "@/*": ["./src/*"]
+        }
     },
     "include": [".astro/types.d.ts", "**/*"],
-    "exclude": ["dist"],
+    "exclude": ["dist"]
 }
