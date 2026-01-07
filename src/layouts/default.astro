@@ -4,6 +4,7 @@ import { Font } from 'astro:assets';
 import { readSingleton } from '@directus/sdk';
 import { directusRequest } from '@/lib/directus';
 import { parseSeo } from '@/utils/parse-seo';
+import { buildAssetUrl } from '@/utils/build-asset-url';
 
 interface Props {
     title?: string;
@@ -17,6 +18,7 @@ const seo = parseSeo(global.seo);
 
 let title = seo.title;
 let description = seo.meta_description;
+let ogImageUrl: string | undefined = undefined;
 
 if (props.title) {
     title = `${props.title} | ${title}`;
@@ -25,6 +27,11 @@ if (props.title) {
 if (props.description) {
     description = props.description;
 }
+
+if (seo.og_image) {
+  ogImageUrl = buildAssetUrl(seo.og_image);
+}
+
 ---
 
 <html lang="en" data-theme="dark">
@@ -44,7 +51,7 @@ if (props.description) {
         <link rel="manifest" href="/site.webmanifest" />
 
         <meta property="og:title" content={ title } />
-        <meta property="og:image" content={ seo.og_image } />
+        <meta property="og:image" content={ ogImageUrl } />
         <meta property="og:description" content={ description } />
 
         <Font cssVariable="--font-roboto" preload />
