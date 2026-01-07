@@ -4,10 +4,11 @@ on:
   push:
     branches: [ main ]
   workflow_dispatch:
-
   repository_dispatch:
-    types:
-      - deploy
+
+concurrency:
+  group: ${{ github.event.inputs.environment || 'default' }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -15,14 +16,6 @@ permissions:
   id-token: write
 
 jobs:
-  cancel-redundant:
-    name: Cancel redundant
-    runs-on: ubuntu-latest
-    steps:
-      - uses: technote-space/auto-cancel-redundant-workflow@v1
-      - name: Cancel redundant workflows
-        run: echo "Cancel redundant workflows finished"
-
   build:
     runs-on: ubuntu-latest
     steps:
