@@ -11,14 +11,15 @@ interface Props {
     description?: string;
 }
 
-const global = await directusRequest(readSingleton('global'));
+const main = await directusRequest(readSingleton('main_info'));
 
 const props = Astro.props;
-const seo = parseSeo(global.seo);
+const seo = parseSeo(main.seo);
 
 let title = seo.title;
 let description = seo.meta_description;
 let ogImageUrl: string | undefined;
+const robots: string[] = [];
 
 if (props.title) {
     title = `${props.title} | ${title}`;
@@ -30,6 +31,14 @@ if (props.description) {
 
 if (seo.og_image) {
     ogImageUrl = buildAssetUrl(seo.og_image);
+}
+
+if (seo.no_follow) {
+    robots.push('noindex');
+}
+
+if (seo.no_follow) {
+    robots.push('nofollow');
 }
 ---
 
@@ -48,6 +57,9 @@ if (seo.og_image) {
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content={ title } />
         <link rel="manifest" href="/site.webmanifest" />
+
+        <meta name="robots" content={ robots.join(', ') } />
+        <link rel="sitemap" href="/sitemap-index.xml" />
 
         <meta property="og:title" content={ title } />
         <meta property="og:image" content={ ogImageUrl } />

@@ -1,15 +1,23 @@
 ---
-import { readSingleton } from '@directus/sdk';
+import { readItems, readSingleton } from '@directus/sdk';
 import DefaultLayout from '@/layouts/default.astro';
 import { directusRequest } from '@/lib/directus';
 import ThemeToggle from '@/molecules/theme-toggle.astro';
 import WelcomeHero from '@/organisms/welcome-hero.astro';
+import Locations from '@/templates/locations.astro';
 
 const welcome = await directusRequest(readSingleton('welcome'));
+const locations = await directusRequest(readItems('location', { fields: ['location_image', 'name'] }));
 ---
 
 <DefaultLayout title={ welcome.title }>
     <ThemeToggle class="absolute top-3 right-3 z-10" />
 
-    <WelcomeHero />
+    <div class="flex flex-col w-full">
+        <WelcomeHero />
+
+        <div class="divider"></div>
+
+        <Locations locations={locations}/>
+    </div>
 </DefaultLayout>

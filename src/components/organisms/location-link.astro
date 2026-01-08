@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import type { Location } from '@/generated/directus';
+import { buildAssetUrl } from '@/utils/build-asset-url';
+
+interface Props {
+    location: Omit<Location, 'id'>;
+}
+
+const { location } = Astro.props;
+const imageUrl = buildAssetUrl(location.location_image);
+---
+
+<li class="card bg-base-200 w-60 shadow-2xl">
+    <figure>
+        <Image class="dimmed-image" src={imageUrl} width="240" height="240" alt={ `Image of ${location.name}` } />
+    </figure>
+
+    <div class="card-body">
+        <h3 class="card-title">{ location.name }</h3>
+        <div class="card-actions">
+            <button class="btn btn-primary">Scams</button>
+            <button class="btn btn-secondary">Help</button>
+        </div>
+    </div>
+</li>

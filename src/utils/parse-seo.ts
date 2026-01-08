@@ -3,6 +3,8 @@ import { z } from 'astro/zod';
 const seoSchema = z.object({
     title: z.string(),
     meta_description: z.string(),
+    no_index: z.boolean(),
+    no_follow: z.boolean(),
     og_image: z.string().nullable(),
 });
 

@@ -1,0 +1,18 @@
+---
+import type { Location } from '@/generated/directus';
+import LocationLink from '@/organisms/location-link.astro';
+
+interface Props {
+    locations: Omit<Location, 'id'>[];
+}
+
+const { locations } = Astro.props;
+---
+
+<section class="section">
+    <ul class="flex justify-center flex-wrap gap-8">
+        {locations.map(location => (
+            <LocationLink location={location} />
+        ))}
+    </ul>
+</section>

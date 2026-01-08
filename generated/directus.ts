@@ -1,8 +1,13 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-07T16:42:45.528Z */
-export interface Global {
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-08T09:45:59.714Z */
+export interface Location {
+  id: number;
+  name: string;
+  location_image: string | DirectusFile;
+}
+
+export interface MainInfo {
   id: number;
   seo: Record<string, unknown>;
-  social_preview: string | DirectusFile;
 }
 
 export interface Welcome {
@@ -93,7 +98,8 @@ export interface DirectusRole {
 }
 
 export interface ApiCollections {
-  global: Global;
+  location: Location[];
+  main_info: MainInfo;
   welcome: Welcome;
   directus_files: DirectusFile[];
 }
