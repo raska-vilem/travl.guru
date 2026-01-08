@@ -1,0 +1,10 @@
+---
+// import { Image } from "astro:assets";
+import { Icon } from 'astro-icon/components';
+
+const { class: className } = Astro.props;
+---
+
+<a class={className} href="/">
+    <Icon name="home" class="h-10 w-10 fill-current" />
+</a>

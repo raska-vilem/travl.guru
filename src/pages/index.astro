@@ -6,11 +6,11 @@ import ThemeToggle from '@/molecules/theme-toggle.astro';
 import WelcomeHero from '@/organisms/welcome-hero.astro';
 import Locations from '@/templates/locations.astro';
 
-const welcome = await directusRequest(readSingleton('welcome'));
-const locations = await directusRequest(readItems('location', { fields: ['location_image', 'name'] }));
+const main = await directusRequest(readSingleton('main_info'));
+const locations = await directusRequest(readItems('location', { fields: ['location_image', 'name', 'slug'] }));
 ---
 
-<DefaultLayout title={ welcome.title }>
+<DefaultLayout title={ main.welcome_title }>
     <ThemeToggle class="absolute top-3 right-3 z-10" />
 
     <div class="flex flex-col w-full">

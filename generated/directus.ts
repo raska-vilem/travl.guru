@@ -1,22 +1,36 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-08T09:45:59.714Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-08T21:30:50.744Z */
+export interface Scam {
+  id: string;
+}
+
 export interface Location {
   id: number;
   name: string;
   location_image: string | DirectusFile;
+  /** Page for the location will be available here. */
+  slug: string;
+  /** Seo description for the location. */
+  description: string;
 }
 
 export interface MainInfo {
   id: number;
   seo: Record<string, unknown>;
+  /** Disclaimer in page footer. */
+  disclaimer: string;
+  /** Welcome title shown on top of the main page. */
+  welcome_title: string;
+  /** Text shown on top of the main page. */
+  welcome_text: string;
+  /** image shown on top of main page. */
+  welcome_image: string | DirectusFile;
 }
 
-export interface Welcome {
+export interface ScamType {
   id: number;
-  /** Title of the main landing page */
-  title: string;
-  /** Subtitle on landing page */
-  subtitle: string;
-  hero_image: string | DirectusFile;
+  type: string;
+  description: string;
+  scam_icon: string;
 }
 
 export interface DirectusFile {
@@ -98,9 +112,10 @@ export interface DirectusRole {
 }
 
 export interface ApiCollections {
+  Scams: Scam[];
   location: Location[];
   main_info: MainInfo;
-  welcome: Welcome;
+  scam_type: ScamType[];
   directus_files: DirectusFile[];
 }
 

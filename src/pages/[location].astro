@@ -1,0 +1,31 @@
+---
+import { readItems } from '@directus/sdk';
+import type { Location } from '@/generated/directus';
+import DefaultLayout from '@/layouts/default.astro';
+import { directusRequest } from '@/lib/directus';
+import HomeButton from '@/molecules/home-button.astro';
+import ThemeToggle from '@/molecules/theme-toggle.astro';
+
+interface Props {
+    location: Location;
+}
+
+export async function getStaticPaths() {
+    const locations = await directusRequest(readItems('location'));
+    return locations.map((location) => ({
+        params: { location: location.slug },
+        props: { location },
+    }));
+}
+
+const { location } = Astro.props;
+---
+
+<DefaultLayout title={ location.name } description={ location.description }>
+    <ThemeToggle class="absolute top-3 right-3 z-10" />
+    <HomeButton class="absolute top-3 left-3 z-10"/>
+
+    <div class="text-center py-6 md:py-3">
+        <h1 class="text-xl md:text-4xl font-bold w-full">{ location.name }</h1>
+    </div>
+</DefaultLayout>

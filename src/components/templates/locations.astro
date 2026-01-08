@@ -3,7 +3,7 @@ import type { Location } from '@/generated/directus';
 import LocationLink from '@/organisms/location-link.astro';
 
 interface Props {
-    locations: Omit<Location, 'id'>[];
+    locations: Pick<Location, 'slug' | 'name' | 'location_image'>[];
 }
 
 const { locations } = Astro.props;

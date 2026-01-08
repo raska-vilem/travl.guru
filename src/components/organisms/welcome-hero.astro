@@ -4,9 +4,10 @@ import { readSingleton } from '@directus/sdk';
 import { directusRequest } from '@/lib/directus';
 import { buildAssetUrl } from '@/utils/build-asset-url';
 
-const { title, subtitle, hero_image } = await directusRequest(readSingleton('welcome'));
-const heroImageUrl = buildAssetUrl(hero_image);
-const heroImageAlt = `Welcome image | ${title}`;
+const { welcome_title, welcome_text, welcome_image } = await directusRequest(readSingleton('main_info'));
+
+const heroImageUrl = buildAssetUrl(welcome_image);
+const heroImageAlt = `Welcome image | ${welcome_title}`;
 ---
 
 <header class="section">
@@ -20,10 +21,8 @@ const heroImageAlt = `Welcome image | ${title}`;
         />
 
         <div class="flex justify-center flex-col">
-            <h1 class="text-5xl font-bold">{ title }</h1>
-            <p class="py-6">
-                { subtitle }
-            </p>
+            <h1 class="text-5xl font-bold">{ welcome_title }</h1>
+            <p class="py-6" set:html={welcome_text}></p>
         </div>
     </div>
 </header>
