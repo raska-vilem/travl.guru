@@ -1,29 +1,57 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-08T21:30:50.744Z */
-export interface Scam {
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-10T22:51:17.280Z */
+export interface Datum {
   id: string;
+}
+
+export interface HowToGuide {
+  id: number;
+  content: string;
+  locations: number[] | HowToGuidesLocation[];
+  name: string;
+}
+
+export interface HowToGuidesLocation {
+  id: number;
+  how_to_guides_id: number | HowToGuide;
+  location_id: number | Location;
 }
 
 export interface Location {
   id: number;
-  name: string;
   location_image: string | DirectusFile;
-  /** Page for the location will be available here. */
   slug: string;
-  /** Seo description for the location. */
   description: string;
+  name: string;
+  relation_id: unknown;
+}
+
+export interface LocationRelationId {
+  id: number;
+  location_id: number | Location;
+  item: string;
+  collection: string;
 }
 
 export interface MainInfo {
   id: number;
   seo: Record<string, unknown>;
-  /** Disclaimer in page footer. */
   disclaimer: string;
-  /** Welcome title shown on top of the main page. */
   welcome_title: string;
-  /** Text shown on top of the main page. */
   welcome_text: string;
-  /** image shown on top of main page. */
   welcome_image: string | DirectusFile;
+}
+
+export interface Scam {
+  id: number;
+  content: string;
+  locations: number[] | ScamLocation[];
+  scam_type: number | ScamType;
+}
+
+export interface ScamLocation {
+  id: number;
+  scam_id: number | Scam;
+  location_id: number | Location;
 }
 
 export interface ScamType {
@@ -112,9 +140,14 @@ export interface DirectusRole {
 }
 
 export interface ApiCollections {
-  Scams: Scam[];
+  data: Datum[];
+  how_to_guides: HowToGuide[];
+  how_to_guides_location: HowToGuidesLocation[];
   location: Location[];
+  location_relation_id: LocationRelationId[];
   main_info: MainInfo;
+  scam: Scam[];
+  scam_location: ScamLocation[];
   scam_type: ScamType[];
   directus_files: DirectusFile[];
 }

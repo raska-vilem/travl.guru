@@ -1,0 +1,21 @@
+---
+import type { HowToGuide } from '@/generated/directus';
+
+interface Props {
+    howToGuides: HowToGuide[];
+}
+
+const { howToGuides } = Astro.props;
+---
+
+<section class="section">
+    <div class="w-full flex flex-col gap-4">
+        {howToGuides.map(htg => (
+            <div class="collapse collapse-arrow border-base-300 border">
+                <input type="checkbox" />
+                <div class="collapse-title font-semibold after:start-5 after:end-auto pe-4 ps-12">{ htg.name }</div>
+                <div class="collapse-content text-sm" set:html={ htg.content }></div>
+            </div>
+        ))}
+    </div>
+</section>

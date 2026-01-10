@@ -2,6 +2,7 @@
 import '@/styles/global.css';
 import { Font } from 'astro:assets';
 import { readSingleton } from '@directus/sdk';
+import type { DirectusFile } from '@/generated/directus';
 import { directusRequest } from '@/lib/directus';
 import { buildAssetUrl } from '@/utils/build-asset-url';
 import { parseSeo } from '@/utils/parse-seo';
@@ -9,6 +10,9 @@ import { parseSeo } from '@/utils/parse-seo';
 interface Props {
     title?: string;
     description?: string;
+    og_image?: string | DirectusFile;
+    no_index?: boolean;
+    no_follow?: boolean;
 }
 
 const main = await directusRequest(readSingleton('main_info'));
@@ -29,15 +33,17 @@ if (props.description) {
     description = props.description;
 }
 
-if (seo.og_image) {
+if (props.og_image) {
+    ogImageUrl = buildAssetUrl(props.og_image);
+} else if (seo.og_image) {
     ogImageUrl = buildAssetUrl(seo.og_image);
 }
 
-if (seo.no_follow) {
+if (props.no_index ?? seo.no_index) {
     robots.push('noindex');
 }
 
-if (seo.no_follow) {
+if (props.no_follow ?? seo.no_follow) {
     robots.push('nofollow');
 }
 ---

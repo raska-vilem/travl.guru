@@ -8,7 +8,7 @@
         "build": "astro build",
         "preview": "astro preview",
         "astro": "astro",
-        "generate-types": "source .env && directus-typeforge -h $CMS_URL -e $CMS_EMAIL -p $CMS_PASSWORD -o ./generated/directus.ts",
+        "generate-types": "source .env && directus-typeforge -x false -d false -h $CMS_URL -e $CMS_EMAIL -p $CMS_PASSWORD -o ./generated/directus.ts",
         "lint": "biome lint --write .",
         "lint:fix": "biome check --write .",
         "prepare": "husky"

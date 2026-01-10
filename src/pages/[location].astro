@@ -1,14 +1,11 @@
 ---
 import { readItems } from '@directus/sdk';
+import HomeButton from '@/atoms/home-button.astro';
+import ThemeToggle from '@/atoms/theme-toggle.astro';
 import type { Location } from '@/generated/directus';
 import DefaultLayout from '@/layouts/default.astro';
 import { directusRequest } from '@/lib/directus';
-import HomeButton from '@/molecules/home-button.astro';
-import ThemeToggle from '@/molecules/theme-toggle.astro';
-
-interface Props {
-    location: Location;
-}
+import HowToGuides from '@/templates/how-to-guides.astro';
 
 export async function getStaticPaths() {
     const locations = await directusRequest(readItems('location'));
@@ -18,14 +15,30 @@ export async function getStaticPaths() {
     }));
 }
 
+interface Props {
+    location: Location;
+}
+
 const { location } = Astro.props;
+
+const howToGuides = await directusRequest(
+    readItems('how_to_guides', {
+        filter: {
+            locations: {
+                location_id: location.id,
+            },
+        },
+    }),
+);
 ---
 
-<DefaultLayout title={ location.name } description={ location.description }>
+<DefaultLayout title={ location.name } description={ location.description } og_image={ location.location_image }>
     <ThemeToggle class="absolute top-3 right-3 z-10" />
     <HomeButton class="absolute top-3 left-3 z-10"/>
 
     <div class="text-center py-6 md:py-3">
         <h1 class="text-xl md:text-4xl font-bold w-full">{ location.name }</h1>
     </div>
+
+    <HowToGuides howToGuides={howToGuides}/>
 </DefaultLayout>
