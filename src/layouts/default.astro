@@ -4,6 +4,7 @@ import { Font } from 'astro:assets';
 import { readSingleton } from '@directus/sdk';
 import type { DirectusFile } from '@/generated/directus';
 import { directusRequest } from '@/lib/directus';
+import Footer from '@/organisms/footer.astro';
 import { buildAssetUrl } from '@/utils/build-asset-url';
 import { parseSeo } from '@/utils/parse-seo';
 
@@ -76,7 +77,10 @@ if (props.no_follow ?? seo.no_follow) {
 
         <slot name="head" />
 	</head>
-	<body class="relative">
-		<slot />
+	<body class="relative flex flex-col min-h-screen">
+		<main class="flex-1">
+			<slot />
+		</main>
+		<Footer />
 	</body>
 </html>
