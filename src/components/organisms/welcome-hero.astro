@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import { readSingleton } from '@directus/sdk';
+import FormattedContent from '@/atoms/formatted-content.astro';
 import { directusRequest } from '@/lib/directus';
 import { buildAssetUrl } from '@/utils/build-asset-url';
 
@@ -22,7 +23,7 @@ const heroImageAlt = `Welcome image | ${welcome_title}`;
 
         <div class="flex justify-center flex-col">
             <h1 class="text-5xl font-bold">{ welcome_title }</h1>
-            <p class="py-6" set:html={welcome_text}></p>
+            <FormattedContent content={ welcome_text } class="mt-10"/>
         </div>
     </div>
 </header>

@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-19T22:03:08.811Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-19T22:09:28.520Z */
 export interface Datum {
   id: string;
 }
@@ -14,10 +14,10 @@ export interface Location {
   id: number;
   location_image: string | DirectusFile;
   slug: string;
-  description: string;
   name: string;
   how_to_guides: number[] | HowTo[];
   scams: number[] | Scam[];
+  description: string;
 }
 
 export interface MainInfo {
