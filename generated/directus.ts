@@ -1,19 +1,13 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-11T09:51:12.327Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-19T22:03:08.811Z */
 export interface Datum {
   id: string;
 }
 
-export interface HowToGuide {
+export interface HowTo {
   id: number;
-  content: string;
-  locations: number[] | HowToGuidesLocation[];
   name: string;
-}
-
-export interface HowToGuidesLocation {
-  id: number;
-  how_to_guides_id: number | HowToGuide;
-  location_id: number | Location;
+  location: number | Location;
+  content: string;
 }
 
 export interface Location {
@@ -22,14 +16,8 @@ export interface Location {
   slug: string;
   description: string;
   name: string;
-  relation_id: unknown;
-}
-
-export interface LocationRelationId {
-  id: number;
-  location_id: number | Location;
-  item: string;
-  collection: string;
+  how_to_guides: number[] | HowTo[];
+  scams: number[] | Scam[];
 }
 
 export interface MainInfo {
@@ -43,15 +31,10 @@ export interface MainInfo {
 
 export interface Scam {
   id: number;
-  content: string;
-  locations: number[] | ScamLocation[];
-  scam_type: number | ScamType;
-}
-
-export interface ScamLocation {
-  id: number;
-  scam_id: number | Scam;
-  location_id: number | Location;
+  name: string;
+  type: number | ScamType;
+  description: string;
+  location: number | Location;
 }
 
 export interface ScamType {
@@ -141,13 +124,10 @@ export interface DirectusRole {
 
 export interface ApiCollections {
   data: Datum[];
-  how_to_guides: HowToGuide[];
-  how_to_guides_location: HowToGuidesLocation[];
+  how_to: HowTo[];
   location: Location[];
-  location_relation_id: LocationRelationId[];
   main_info: MainInfo;
   scam: Scam[];
-  scam_location: ScamLocation[];
   scam_type: ScamType[];
   directus_files: DirectusFile[];
 }

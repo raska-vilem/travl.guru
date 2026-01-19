@@ -1,6 +1,8 @@
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, envField, fontProviders } from 'astro/config';
+// @ts-expect-error
+import getRemoteAssets from 'astro-get-remote-img';
 import icon from 'astro-icon';
 import { loadEnv } from 'vite';
 
@@ -15,9 +17,17 @@ export default defineConfig({
         },
     },
     vite: {
+        // @ts-expect-error
         plugins: [tailwindcss()],
     },
-    integrations: [sitemap(), icon()],
+    integrations: [
+        sitemap(),
+        icon(),
+        getRemoteAssets({
+            url: CDN_URL,
+            imageDir: './images',
+        }),
+    ],
     prefetch: {
         defaultStrategy: 'viewport',
     },

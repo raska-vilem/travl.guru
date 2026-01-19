@@ -22,11 +22,9 @@ interface Props {
 const { location } = Astro.props;
 
 const howToGuides = await directusRequest(
-    readItems('how_to_guides', {
+    readItems('how_to', {
         filter: {
-            locations: {
-                location_id: location.id,
-            },
+            location: location.id,
         },
     }),
 );
