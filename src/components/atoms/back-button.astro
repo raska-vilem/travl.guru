@@ -4,6 +4,15 @@ import { Icon } from 'astro-icon/components';
 const { class: className } = Astro.props;
 ---
 
-<button class={className} onclick="history.back()" aria-label="Go back">
+<button class={className} data-back-button aria-label="Go back">
     <Icon name="arrow-left" class="h-10 w-10 fill-current" />
 </button>
+
+<script>
+    const backButtons = document.querySelectorAll('[data-back-button]');
+    backButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            history.back();
+        });
+    });
+</script>
