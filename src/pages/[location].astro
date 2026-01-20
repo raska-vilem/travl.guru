@@ -1,7 +1,7 @@
 ---
 import { readItems } from '@directus/sdk';
+import BackButton from '@/atoms/back-button.astro';
 import FormattedContent from '@/atoms/formatted-content.astro';
-import HomeButton from '@/atoms/home-button.astro';
 import ThemeToggle from '@/atoms/theme-toggle.astro';
 import type { Location } from '@/generated/directus';
 import DefaultLayout from '@/layouts/default.astro';
@@ -33,7 +33,7 @@ const howToGuides = await directusRequest(
 
 <DefaultLayout title={ location.name } description={ location.description } og_image={ location.location_image }>
     <ThemeToggle class="absolute top-3 right-3 z-10" />
-    <HomeButton class="absolute top-3 left-3 z-10"/>
+    <BackButton class="absolute top-3 left-3 z-10"/>
 
     <FormattedContent content={ location.description } class="mt-16"/>
 
