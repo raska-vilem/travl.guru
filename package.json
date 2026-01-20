@@ -17,6 +17,7 @@
         "@astrojs/sitemap": "^3.7.0",
         "@biomejs/biome": "2.3.11",
         "@directus/sdk": "^21.0.0",
+        "@iconify-json/tabler": "^1.2.26",
         "@tailwindcss/vite": "^4.1.18",
         "astro": "^5.16.11",
         "astro-get-remote-img": "^1.1.0",

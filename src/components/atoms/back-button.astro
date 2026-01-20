@@ -4,8 +4,8 @@ import { Icon } from 'astro-icon/components';
 const { class: className } = Astro.props;
 ---
 
-<button class={className} data-back-button aria-label="Go back">
-    <Icon name="arrow-left" class="h-10 w-10 fill-current" />
+<button class={`cursor-pointer ${className}`} data-back-button aria-label="Go back">
+    <Icon name="tabler:chevron-left" class="h-10 w-10 fill-current" />
 </button>
 
 <script>

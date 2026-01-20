@@ -97,3 +97,5 @@ const location = await directusRequest(readItem('location', id));
 3.  **Atomic Design:** Place new components in the correct atomic folder (`atoms`, `molecules`, etc.).
 4.  **Linting:** Always run `pnpm lint:fix` before finalizing changes to ensure Biome compliance.
 5.  **Environment:** Do not hardcode URLs. Use `CDN_URL` or `CMS_URL` from environment variables.
+
+Do not commit your changes.

@@ -1,4 +1,4 @@
-/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-19T22:27:48.422Z */
+/** * Generated TypeScript types for Directus Schema * Generated on: 2026-01-20T14:25:20.848Z */
 export interface Datum {
   id: string;
 }
